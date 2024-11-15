@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { Dumpsite } from '../types';
 import TextInput from './TextInput';
+import Icon from '../assets/svgs/MillIcon.svg';
 
 interface DumpsiteFormProps {
   onDumpsiteAdded: (dumpsite: Dumpsite) => void;
@@ -50,10 +51,11 @@ const DumpsiteForm: React.FC<DumpsiteFormProps> = ({
   }, [newDumpsiteLocation, setValue]);
 
   return (
-    <div className="w-full md:w-1/3 p-6 bg-white shadow-md">
+    <div className="w-full p-6 bg-white shadow-md">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Manage Dumpsites</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <h3 className="font-bold text-lg mb-2">Add a New Dumpsite</h3>
+        <img src={Icon} alt="mill" />
         <TextInput
           label="Latitude"
           type="number"

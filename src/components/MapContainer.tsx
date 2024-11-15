@@ -21,7 +21,7 @@ interface MapWrapperProps {
 }
 
 const MapWrapper = ({ mills, dumpsites, setNewDumpsiteLocation }: MapWrapperProps) => {
-  const getColorByDate = (lastTransactionDate: string) => {
+  const getColorByDate = (lastTransactionDate: Date) => {
     const daysAgo =
       (new Date().getTime() - new Date(lastTransactionDate).getTime()) /
       (1000 * 60 * 60 * 24);
@@ -42,6 +42,7 @@ const MapWrapper = ({ mills, dumpsites, setNewDumpsiteLocation }: MapWrapperProp
 
     return null;
   };
+  console.log(mills, dumpsites, 'hey dude');
   return (
     <MapContainer
       center={defaultPosition}
@@ -57,9 +58,9 @@ const MapWrapper = ({ mills, dumpsites, setNewDumpsiteLocation }: MapWrapperProp
           <Popup>
             <div className="text-center space-y-2">
               <h3 className="text-lg font-semibold text-green-600">Mill Details</h3>
-              <p>Quantity Sold: {mill.quantitySold ?? 'N/A'} tons</p>
-              <p>Average Price per Ton: ${mill.averagePricePerTon ?? 'N/A'}</p>
-              <p>Transaction Count: {mill.transactionCount ?? 'N/A'}</p>
+              <p>Quantity Sold: {mill.p1Amount ?? 'N/A'} tons</p>
+              <p>Average Price per Ton: ${mill.p1PriceTon ?? 'N/A'}</p>
+              <p>Transaction Count: {mill.numTransactions ?? 'N/A'}</p>
               <p>
                 Last Transaction Date:{' '}
                 {mill.lastTransactionDate

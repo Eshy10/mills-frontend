@@ -6,7 +6,7 @@ import App from './App.tsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ToastContainer position="top-right" />

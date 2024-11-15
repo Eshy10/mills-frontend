@@ -2,10 +2,12 @@ export interface Mill {
   id: string;
   latitude: number;
   longitude: number;
-  quantitySold: number;
-  averagePricePerTon: number;
-  transactionCount: number;
-  lastTransactionDate: string;
+  name: string;
+  p1Amount: number;
+  numTransactions: number;
+  p1PriceTon: number;
+  transactions: number;
+  lastTransactionDate: Date;
 }
 
 export interface Dumpsite {
