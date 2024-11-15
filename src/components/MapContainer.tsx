@@ -7,7 +7,8 @@ import {
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { Dumpsite, Mill } from 'types';
 
-const defaultPosition: [number, number] = [6.5244, 3.3792];
+// Set default position to Uyo
+const defaultPosition: [number, number] = [5.0376, 7.9128];
 
 interface MapWrapperProps {
   mills: Mill[];
@@ -20,6 +21,7 @@ interface MapWrapperProps {
   >;
 }
 
+// set color by last transaction
 const MapWrapper = ({ mills, dumpsites, setNewDumpsiteLocation }: MapWrapperProps) => {
   const getColorByDate = (lastTransactionDate: Date) => {
     const daysAgo =
@@ -30,6 +32,7 @@ const MapWrapper = ({ mills, dumpsites, setNewDumpsiteLocation }: MapWrapperProp
     return 'red';
   };
 
+  // Handler enables setting the latitude and longitude just by users interaction
   const MapClickHandler: React.FC<{
     setNewDumpsiteLocation: (location: { latitude: number; longitude: number }) => void;
   }> = ({ setNewDumpsiteLocation }) => {
@@ -42,52 +45,60 @@ const MapWrapper = ({ mills, dumpsites, setNewDumpsiteLocation }: MapWrapperProp
 
     return null;
   };
-  console.log(mills, dumpsites, 'hey dude');
+
   return (
     <MapContainer
       center={defaultPosition}
       zoom={10}
-      style={{ height: '100vh', width: '70%' }}
+      style={{ height: '100%', minHeight: '20rem', width: '100%' }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; OpenStreetMap contributors"
       />
-      {mills.map((mill) => (
-        <Marker key={mill.id} position={[mill.latitude, mill.longitude]} icon={millIcon}>
-          <Popup>
-            <div className="text-center space-y-2">
-              <h3 className="text-lg font-semibold text-green-600">Mill Details</h3>
-              <p>Quantity Sold: {mill.p1Amount ?? 'N/A'} tons</p>
-              <p>Average Price per Ton: ${mill.p1PriceTon ?? 'N/A'}</p>
-              <p>Transaction Count: {mill.numTransactions ?? 'N/A'}</p>
-              <p>
-                Last Transaction Date:{' '}
-                {mill.lastTransactionDate
-                  ? new Date(mill.lastTransactionDate).toLocaleDateString()
-                  : 'N/A'}
-              </p>
-              <div
-                className={`w-3 h-3 rounded-full mt-2`}
-                style={{ backgroundColor: getColorByDate(mill.lastTransactionDate) }}
-              ></div>
-            </div>
-          </Popup>
-        </Marker>
-      ))}
-      {dumpsites.map((dumpsite) => (
-        <Marker
-          key={dumpsite.id}
-          position={[dumpsite.latitude, dumpsite.longitude]}
-          icon={dumpsite.status === 'active' ? activeDumpsiteIcon : inactiveDumpsiteIcon}
-        >
-          <Popup>
-            <h3 className="font-bold">Dumpsite Details</h3>
-            <p>Capacity: {dumpsite.capacity ?? 'N/A'} tons</p>
-            <p>Status: {dumpsite.status}</p>
-          </Popup>
-        </Marker>
-      ))}
+      {mills &&
+        mills?.map((mill) => (
+          <Marker
+            key={mill?.id}
+            position={[mill?.latitude, mill?.longitude]}
+            icon={millIcon}
+          >
+            <Popup>
+              <div className="text-center space-y-2">
+                <h3 className="text-lg font-semibold text-green-600">Mill Details</h3>
+                <p>Quantity Sold: {mill?.p1Amount ?? 'N/A'} tons</p>
+                <p>Average Price per Ton: ${mill?.p1PriceTon ?? 'N/A'}</p>
+                <p>Transaction Count: {mill?.numTransactions ?? 'N/A'}</p>
+                <p>
+                  Last Transaction Date:{' '}
+                  {mill?.lastTransactionDate
+                    ? new Date(mill?.lastTransactionDate)?.toLocaleDateString()
+                    : 'N/A'}
+                </p>
+                <div
+                  className={`w-3 h-3 rounded-full mt-2`}
+                  style={{ backgroundColor: getColorByDate(mill?.lastTransactionDate) }}
+                ></div>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+      {dumpsites &&
+        dumpsites?.map((dumpsite) => (
+          <Marker
+            key={dumpsite?.id}
+            position={[dumpsite?.latitude, dumpsite?.longitude]}
+            icon={
+              dumpsite?.status === 'active' ? activeDumpsiteIcon : inactiveDumpsiteIcon
+            }
+          >
+            <Popup>
+              <h3 className="font-bold">Dumpsite Details</h3>
+              <p>Capacity: {dumpsite?.capacity ?? 'N/A'} tons</p>
+              <p>Status: {dumpsite?.status}</p>
+            </Popup>
+          </Marker>
+        ))}
       <MapClickHandler setNewDumpsiteLocation={setNewDumpsiteLocation} />
     </MapContainer>
   );

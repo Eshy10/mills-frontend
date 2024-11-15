@@ -36,13 +36,15 @@ const MainContainer: React.FC = () => {
     setDumpsites((prevDumpsites) => [...prevDumpsites, newDumpsite]);
   };
   return (
-    <div className="flex w-full">
-      <MapWrapper
-        mills={mills}
-        dumpsites={dumpsites}
-        setNewDumpsiteLocation={setNewDumpsiteLocation}
-      />
-      <div className="w-full p-5">
+    <div className="flex flex-col lg:flex-row w-full h-full">
+      <div className="lg:w-2/3 w-full h-64 lg:h-full">
+        <MapWrapper
+          mills={mills}
+          dumpsites={dumpsites}
+          setNewDumpsiteLocation={setNewDumpsiteLocation}
+        />
+      </div>
+      <div className="lg:w-1/3 w-full p-5 mt-[5rem] lg:mt-0">
         <DumpsiteForm
           onDumpsiteAdded={handleDumpsiteAdded}
           newDumpsiteLocation={newDumpsiteLocation}
