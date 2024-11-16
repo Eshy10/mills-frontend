@@ -86,8 +86,11 @@ const MapWrapper = ({ mills, dumpsites, setNewDumpsiteLocation }: MapWrapperProp
       {dumpsites &&
         dumpsites?.map((dumpsite) => (
           <Marker
-            key={dumpsite?.id}
-            position={[dumpsite?.latitude, dumpsite?.longitude]}
+            key={dumpsite?._id}
+            position={[
+              dumpsite?.location.coordinates[1], // latitude
+              dumpsite?.location.coordinates[0], // longitude
+            ]}
             icon={
               dumpsite?.status === 'active' ? activeDumpsiteIcon : inactiveDumpsiteIcon
             }

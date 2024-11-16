@@ -10,7 +10,11 @@ export interface Mill {
 }
 
 export interface Dumpsite {
-  id?: string;
+  location: {
+    type: string;
+    coordinates: [number, number]; // [longitude, latitude]
+  };
+  _id?: string;
   latitude: number;
   longitude: number;
   // quantitySold: number;
