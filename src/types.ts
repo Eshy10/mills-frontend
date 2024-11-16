@@ -2,11 +2,10 @@ export interface Mill {
   id: string;
   latitude: number;
   longitude: number;
-  name: string;
+  millName: string;
   p1Amount: number;
   numTransactions: number;
   p1PriceTon: number;
-  transactions: number;
   lastTransactionDate: Date;
 }
 
