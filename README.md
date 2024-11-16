@@ -5,8 +5,8 @@
 This application allows users to interact with a map to visualize mills and Palm Kernel Shell (PKS) dumpsites, view detailed information about mills, and add new dumpsites.
 
 ## Live Demo Test (https://mills-pks.netlify.app/)
-- To see a visual dumpsite been added for easy accessibility as the map is big for testing purposes, you can click on the map which prefills the latitude and longitude fiels
-- In the image below grey represent inactive and blue represent active dumpsites while the map icom is for mills data, click on it to see a pop up showing details of the mills 
+- For testing purposes, to see how a dumpsite is being added for easy accessibility since the map is big, you can click on the map which prefills the latitude and longitude fields on the form.
+- In the image below grey represents inactive and blue represents active dumpsites while the map icon is for mills data, click on it to see a pop-up showing details of the mills 
 
 <img width="954" alt="Screenshot 2024-11-16 at 03 12 19" src="https://github.com/user-attachments/assets/ba2f71e8-d494-49da-8ab9-960adaeac754">
 
